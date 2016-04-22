@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
+'''
+iftopHelper.py
+
+@author:     Shifuture
+@license:    MIT
+'''
+
 import re
 import os
 from optparse import OptionParser
@@ -50,7 +57,7 @@ def isInBlockPrefix(ip):
 
 def block(ip):
     print("   IP -> %15s blocked"%ip)
-    os.popen("iptables -I FORWARD -s %s -j DROP"%ip)
+    os.popen("(/sbin/iptables -L -n -t filter|/bin/grep %s) || /sbin/iptables -I FORWARD -s %s -j DROP"%(ip,ip))
 
 def initLimit():
     lines=readTail(LOG_FILE, LOG_LINES)
