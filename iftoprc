@@ -1,0 +1,13 @@
+interface: bond1
+
+dns-resolution: no
+
+show-bars: yes
+
+sort: 40s
+
+show-totals: no
+
+use-bytes: yes
+
+line-display: one-line-both
