@@ -26,9 +26,18 @@ BLOCK_IF_OVER=1024*1024*10 # over 10M
 
 ## USAGE
 
+
+### Run IFTOP Firstly
+
+```
+[root@server ~]# nohup iftop -c iftoprc -t > /var/log/iftop.log &
+```
+
+### Run iftopHelper
+
 ```bash
-[root@server ~]# netlimit.py 
-usage: netlimit [-b <ip>] [-l list] [-a auto block] [-h help]
+[root@server ~]# iftopHelper.py 
+usage: iftopHelper [-b <ip>] [-l list] [-a auto block] [-h help]
 
 options:
   -h, --help   show this help message and exit

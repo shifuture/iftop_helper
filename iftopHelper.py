@@ -78,7 +78,7 @@ def initLimit():
     return ips
 
 def main():
-    parser = OptionParser("netlimit [-b <ip>] [-l list] [-a auto block] [-h help]")
+    parser = OptionParser("iftopHelper [-b <ip>] [-l list] [-a auto block] [-h help]")
     parser.add_option('-b','', dest="block_ip", help="block the ip provided")
     parser.add_option('-l','', dest="list", action="store_true", help="list all ip traffic info")
     parser.add_option('-a','--auto',dest="auto",action="store_true" , help="auto block the ip(s) which traffic is over limit")
