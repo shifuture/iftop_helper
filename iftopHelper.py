@@ -8,7 +8,7 @@ iftopHelper.py
 '''
 
 import re
-import os
+import commands
 from optparse import OptionParser
 
 ############################################
@@ -28,8 +28,7 @@ def readTail(fileName, lineNum):
     read tail lines of iftop log
     '''
     res=[]
-    output=os.popen('tail -'+str(lineNum)+' '+fileName)
-    content=output.read()
+    content=commands.getoutput('tail -'+str(lineNum)+' '+fileName)
     lines=re.findall("[\d\s]+\ +(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\ +=>\ +(.*B)\ +(.*B)\ +(.*B)\ +(.*B)\s+[\d ]+\ +(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\ +<=\ +(.*B)\ +(.*B)\ +(.*B)\ +(.*B)", content)
     return lines
 
@@ -57,7 +56,7 @@ def isInBlockPrefix(ip):
 
 def block(ip):
     print("   IP -> %15s blocked"%ip)
-    os.popen("(/sbin/iptables -L -n -t filter|/bin/grep %s) || /sbin/iptables -I FORWARD -s %s -j DROP"%(ip,ip))
+    commands.getoutput("(/sbin/iptables -L -n -t filter|/bin/grep %s) || /sbin/iptables -I FORWARD -s %s -j DROP"%(ip,ip))
 
 def initLimit():
     lines=readTail(LOG_FILE, LOG_LINES)
