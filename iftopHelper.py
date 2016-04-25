@@ -62,6 +62,8 @@ def initLimit():
     lines=readTail(LOG_FILE, LOG_LINES)
     connInfo={}
     for line in lines:
+        if line[0] in BLOCK_SKIP_IP or line[6] in BLOCK_SKIP_IP:
+            continue
         if line[0] not in BLOCK_SKIP_IP and isInBlockPrefix(line[0]):
             if line[0] in connInfo:
                 connInfo[line[0]] = [connInfo[line[0]][0]+transPacketSize(line[1])+transPacketSize(line[6]), 
